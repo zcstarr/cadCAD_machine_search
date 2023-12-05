@@ -3,14 +3,15 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import normalize
 from sklearn.preprocessing import MinMaxScaler
 import plotly.figure_factory as ff
-from typing import Dict
+from typing import Dict, List
 import numpy as np
 import pandas as pd
 
+
 def plot_goal_ternary(df: pd.DataFrame,
-                 kpis: Dict[str, callable],
-                 goals: Dict[str, callable],
-                 control_params: set) -> None:
+                      kpis: Dict[str, callable],
+                      goals: Dict[str, callable],
+                      control_params: List) -> None:
     """
     Arguments
     ---
@@ -50,7 +51,6 @@ def plot_goal_ternary(df: pd.DataFrame,
     # Encapsulate RF regression results in a dict
     metrics = dict(zip(kpis.keys(), coords.T))
     metrics = {k: norm(v) for (k, v) in metrics.items()}
-
 
     labels = [k for k in goals.keys() if k != 'combined']
 
