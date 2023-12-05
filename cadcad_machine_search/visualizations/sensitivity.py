@@ -56,7 +56,7 @@ def param_sensitivity_plot(df: pd.DataFrame,
     Plot the sensivity of the 'target' column vs
     a list of control parameters, which are data frame columns.
     """
-    features = set(control_params) - {target}
+    features = list(set(control_params) - {target})
     X = df.loc[:, features]
     y = (df[target] > 0)
     # Visualize
